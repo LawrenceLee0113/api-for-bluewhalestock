@@ -6,6 +6,7 @@ from flask_cors import CORS
 CORS(app, resources={r"/.*": {"origins": ["http://43.254.19.106:8080/","https://bluewhale-stock.tw"]}})
 import DBManager as DB
 newStock_DB = DB.DBManager("localhost","bluewhal_yih","r0g{bYg+([jd","bluewhal_NewStock")
+tool = DB.tool()
 
 
 
@@ -21,8 +22,8 @@ def get_data_base():
     account_id = request.form.get('account_id')
     database_name = request.form.get("database_name")
     table_name = request.form.get("table_name")
-    column_name = request.form.get("column_name")
-    values = newStock_DB.get_data("newstock_otc",["公司代號","公司名稱","承銷商"])
+    column_names = request.form.get("column_names")
+    values = newStock_DB.get_data("newstock_otc",tool.string_to_list(column_name))
     return jsonify({"values":values})
 
 

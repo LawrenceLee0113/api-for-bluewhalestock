@@ -6,8 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>api for bluewhale-stock</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let account_id = ""
+            let database_name = "";
+            let table_name = "";
+            let column_name = "";
+
+            $.post("/get_data_base", {"account_id":account_id,"database_name":database_name,"table_name":table_name,"column_name":column_name},
+                function (data, textStatus, jqXHR) {
+                    console.log(data)
+                },
+                "json"
+            );
+        });
+    </script>
 </head>
 <body>
+    
     hello world!
 </body>
 
